@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Замовлення картки</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Замовлення картки</h1>
+    <form id="cardOrderForm">
+      <fieldset>
+        <legend>Анкета клієнта</legend>
+        
+        <div class="form-group">
+          <label for="surname">1. Прізвище, ім’я, по батькові:</label>
+          <input type="text" id="surname" name="surname" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="ipn">2. ІПН:</label>
+          <input type="text" id="ipn" name="ipn" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="birthDate">3. Дата народження:</label>
+          <input type="date" id="birthDate" name="birthDate" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="birthPlace">4. Місце народження:</label>
+          <input type="text" id="birthPlace" name="birthPlace" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="registration">5. Місце проживання (реєстрація):</label>
+          <input type="text" id="registration" name="registration" required>
+        </div>
+        
+        <div class="form-group checkbox-inline">
+          <input type="checkbox" id="sameResidence" name="sameResidence">
+          <label for="sameResidence">Місце реєстрації співпадає з фактичним місцем проживанням</label>
+        </div>
+        
+        <!-- Ось цей блок має тепер менший верхній відступ -->
+        <div id="workPlaceGroup" class="form-group">
+          <label for="workPlace">6. Місце фактичного проживання:</label>
+          <input type="text" id="workPlace" name="workPlace" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="passportType">7. Паспорт:</label>
+          <select id="passportType" name="passportType" required>
+            <option value="">Оберіть тип</option>
+            <option value="book">Паспорт книжечкою</option>
+            <option value="id">ID-картка</option>
+          </select>
+        </div>
+        
+        <div id="passportBookFields" class="conditional-fields" style="display:none;">
+          <div class="form-group">
+            <label for="passportSeries">Серія паспорта:</label>
+            <input type="text" id="passportSeries" name="passportSeries">
+          </div>
+          <div class="form-group">
+            <label for="passportNumber">Номер паспорта:</label>
+            <input type="text" id="passportNumber" name="passportNumber">
+          </div>
+          <div class="form-group">
+            <label for="passportIssueOrg">Орган видачі:</label>
+            <input type="text" id="passportIssueOrg" name="passportIssueOrg">
+          </div>
+          <div class="form-group">
+            <label for="passportIssueDate">Дата видачі:</label>
+            <input type="date" id="passportIssueDate" name="passportIssueDate">
+          </div>
+          <div id="photoOptions" class="conditional-fields" style="display:none;">
+            <div class="form-group checkbox-inline">
+              <input type="checkbox" id="photo25" name="photo25">
+              <label for="photo25">Фото на 25 років</label>
+            </div>
+            <div class="form-group checkbox-inline">
+              <input type="checkbox" id="photo45" name="photo45">
+              <label for="photo45">Фото на 45 років</label>
+            </div>
+          </div>
+        </div>
+        
+        <div id="passportIdFields" class="conditional-fields" style="display:none;">
+          <div class="form-group">
+            <label for="idNumber">Номер ID-картки:</label>
+            <input type="text" id="idNumber" name="idNumber">
+          </div>
+          <div class="form-group">
+            <label for="idRecordNumber">Запис №:</label>
+            <input type="text" id="idRecordNumber" name="idRecordNumber">
+          </div>
+          <div class="form-group">
+            <label for="idIssueOrg">Орган видачі:</label>
+            <input type="text" id="idIssueOrg" name="idIssueOrg">
+          </div>
+          <div class="form-group">
+            <label for="idIssueDate">Дата видачі:</label>
+            <input type="date" id="idIssueDate" name="idIssueDate">
+          </div>
+          <div class="form-group">
+            <label for="idValidUntil">Дійсний до:</label>
+            <input type="date" id="idValidUntil" name="idValidUntil">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">8. Контактний телефон:</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="deliveryOption">9. Місце отримання картки:</label>
+          <select id="deliveryOption" name="deliveryOption" required>
+            <option value="">Оберіть</option>
+            <option value="organization">На організації</option>
+            <option value="branch">У відділенні банку</option>
+          </select>
+        </div>
+        
+        <div id="organizationField" class="conditional-fields" style="display:none;">
+          <div class="form-group checkbox-inline">
+            <input type="checkbox" id="orgYes" name="orgYes">
+            <label for="orgYes">Хочу отримати картку на організації</label>
+          </div>
+        </div>
+        
+        <div id="branchField" class="conditional-fields" style="display:none;">
+          <div class="form-group">
+            <label for="branchSelect">Оберіть відділення:</label>
+            <select id="branchSelect" name="branchSelect">
+              <!-- Опції підтягуються скриптом -->
+            </select>
+          </div>
+        </div>
+        
+      </fieldset>
+      <button type="submit">Відправити</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
