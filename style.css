@@ -1,0 +1,140 @@
+/* Приховати поле фактичного місця проживання, якщо чекбокс активний */
+.hidden {
+  display: none !important;
+}
+:root {
+  --brand-green: #00563f;
+  --brand-dark: #004a33;
+  --bg-light: #f9f9f9;
+  --form-bg: #ffffff;
+  --form-accent-bg: #f0fdf8;
+  --text-color: #333333;
+  --gap: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: var(--gap);
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: var(--brand-green);
+  margin-bottom: var(--gap);
+}
+
+form {
+  background-color: var(--form-bg);
+  padding: calc(var(--gap) * 1.5);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+form fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: var(--gap);
+  color: var(--brand-green);
+}
+
+/* ����������� ����� ���� */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--gap);
+}
+
+/* ������������� ����������� ��� �������� */
+.form-group.checkbox-inline {
+  flex-direction: row;
+  align-items: center;
+}
+.form-group.checkbox-inline label {
+  margin: 0 0 0 8px;
+}
+
+/* ����������� ������ ������ ��� workPlaceGroup */
+#workPlaceGroup {
+  margin-top: 8px;
+}
+
+/* ������ �� ���� */
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  text-align: left;
+}
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+.form-group input[type="checkbox"] {
+  transform: scale(1.1);
+  margin: 0;
+}
+
+/* ������ */
+button {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background-color: var(--brand-green);
+  color: #fff;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+button:hover {
+  background-color: var(--brand-dark);
+}
+
+/* ������ ����� */
+.conditional-fields {
+  padding: var(--gap);
+  background-color: var(--form-accent-bg);
+  border-left: 4px solid var(--brand-green);
+  border-radius: 4px;
+}
+
+/* Відступ після паспортних блоків */
+#passportBookFields,
+#passportIdFields {
+  margin-bottom: 32px; /* Додаємо більший відступ після блоку паспорта */
+}
+
+/* ������������ */
+@media (max-width: 600px) {
+  .form-group,
+  .form-group.checkbox-inline {
+    flex-direction: column;
+  }
+  .form-group.checkbox-inline label {
+    margin: 6px 0 0 0;
+  }
+}
