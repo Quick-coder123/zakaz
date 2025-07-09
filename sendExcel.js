@@ -9,22 +9,36 @@ async function sendExcelToBackend(formDataObj) {
     },
     body: JSON.stringify(formDataObj)
   });
-  if (!response.ok) {
-    const err = await response.json();
-    throw new Error(err.error || 'Помилка надсилання заявки');
+  let data;
+  try {
+    data = await response.json();
+  } catch (e) {
+    throw new Error('Сервер повернув невалідну відповідь. Спробуйте пізніше.');
   }
-  return await response.json();
+  if (!response.ok) {
+    throw new Error(data && data.error ? data.error : 'Помилка надсилання заявки');
+  }
+  return data;
 }
 
 // Для confirmation.html — надсилати заявку при завантаженні сторінки (або за кнопкою)
 document.addEventListener('DOMContentLoaded', async function() {
   const formData = JSON.parse(localStorage.getItem('applicationData') || '{}');
   if (!formData || Object.keys(formData).length === 0) return;
+  const appDiv = document.getElementById('applicationData');
+  // Показати анімований індикатор відправки
+  appDiv.insertAdjacentHTML('beforeend', `
+    <div id="sendingStatus" class="spinner-container fade-in">
+      <div class="spinner"></div>
+      <span>Відправка заявки...</span>
+    </div>
+  `);
   try {
     await sendExcelToBackend(formData);
-    // Можна показати повідомлення про успіх
-    document.getElementById('applicationData').insertAdjacentHTML('beforeend', '<p class="success">Заявку надіслано на e-mail!</p>');
+    document.getElementById('sendingStatus').remove();
+    appDiv.insertAdjacentHTML('beforeend', '<p class="success fade-in"><span class="icon-success">✔</span> Заявка успішно відправлена на e-mail!</p>');
   } catch (e) {
-    document.getElementById('applicationData').insertAdjacentHTML('beforeend', `<p class="error">${e.message}</p>`);
+    document.getElementById('sendingStatus').remove();
+    appDiv.insertAdjacentHTML('beforeend', `<p class="error fade-in"><span class="icon-error">✖</span> ${e.message}</p>`);
   }
 });
